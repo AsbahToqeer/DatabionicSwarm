@@ -20,7 +20,7 @@
 project = 'asg2'
 copyright = '2019, Asbah'
 author = 'Asbah'
-
+master_doc = 'index'
 # The full version, including alpha/beta/rc tags
 release = '1.0'
 
