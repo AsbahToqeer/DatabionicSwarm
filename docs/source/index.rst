@@ -5,6 +5,15 @@
 
 Welcome to asg2's documentation!
 ================================
+Android Installation::
+
+	Use following link to install android both for Windows and Mac
+	https://developer.android.com/studio/install
+
+IDE for android::
+	
+	Use following link to install IDE for android
+	https://developer.android.com/studio/intro/studio-config
 
 .. toctree::
    :maxdepth: 2
