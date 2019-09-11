@@ -3,9 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-********************************
-Welcome to asg2's documentation!
-********************************
+*****************************************
+Short Intro to the Databionic Swarm (DBS)
+*****************************************
+
+*Michael C. Thrun*
+*27 Jan 2019*
+
 
 
 Android Installation::
