@@ -23,6 +23,15 @@ DBS is a flexible and robust clustering framework that consists of three indepen
 
 Here one example is presented using the automatic approach without any user interaction with shiny. Further automatic examples and a comparison to 26 common clustering algorithms is provided in http://www.deepbionics.org/Projects/ClusteringAlgorithms.html. If you want to verify your clustering result externally, you can use Heatmap or SilhouettePlot of the CRAN package DataVisualizations.
 
+2.1 First Module: Projection of high-dimensional Data
+#####################################################
+
+First generate a 2d projection, the DistanceMatrix has to be defined by the user.::
+
+library(DatabionicSwarm)
+
+
+
 Android Installation::
 ######################
 
