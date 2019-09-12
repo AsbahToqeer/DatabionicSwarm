@@ -15,20 +15,14 @@ Contents
 ********
 
 .. toctree::
-   :maxdepth: 2
-	
-   1 Introduction
-   2 First Example: Automatic approach
-   3 Second Example: Interactive Approach
-   4 Quality Measures of Projection and Clustering
-   5 References
+   :maxdepth: 5
+   :numbered:
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   Introduction
+   First Example: Automatic approach
+   Second Example: Interactive Approach
+   Quality Measures of Projection and Clustering
+   References
 
 ***************
 1 Introduction
