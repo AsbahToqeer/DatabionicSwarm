@@ -105,7 +105,7 @@ The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visua
 
 	GeneralizedUmatrix::plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,Cls,NoLevels=10)
 	
-.. image:: pro.png
+.. image:: canvas.png
     :width: 200px
     :align: center
     :height: 100px
