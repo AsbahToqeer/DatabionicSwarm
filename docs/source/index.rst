@@ -11,16 +11,9 @@ Short Intro to the Databionic Swarm (DBS)
 
 *27 Jan 2019*
 
-.. sidebar:: Contents
-        :subtitle: Introduction
-	:subtitle: First Example
-
-Contents
-********
-
 .. toctree::
    :maxdepth: 5
-   :numbered:
+   :caption: Contents
 
    Introduction <intro>
    First Example: Automatic approach <first>
