@@ -11,6 +11,23 @@ Short Intro to the Databionic Swarm (DBS)
 
 *27 Jan 2019*
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+	
+   1 Introduction
+   2 First Example: Automatic approach
+   3 Second Example: Interactive Approach
+   4 Quality Measures of Projection and Clustering
+   5 References
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
 ***************
 1 Introduction
 ***************
@@ -202,21 +219,6 @@ The accuracy is defined as follows: Accuracy=No.oftruepositives/No.ofcases The n
 
 [Thrun et al.,2018] Thrun, M. C., Pape, F., & Ultsch, A. : Benchmarking Cluster Analysis Methods using PDE-Optimized Violin Plots, Proc. European Conference on Data Analysis (ECDA), accepted, Paderborn, Germany, 2018.
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-	
-   1 Introduction
-   2 First Example: Automatic approach
-   3 Second Example: Interactive Approach
-   4 Quality Measures of Projection and Clustering
-   5 References
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
 
