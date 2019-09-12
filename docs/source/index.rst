@@ -36,22 +36,19 @@ Here one example is presented using the automatic approach without any user inte
 #####################################################
 
 First generate a 2d projection, the DistanceMatrix has to be defined by the user.
-::
+.. code-block:: R
 
 	library(DatabionicSwarm)
 
 ::
 	
 	## Package 'DatabionicSwarm' version 1.1.1.
-	
 	## Type 'citation('DatabionicSwarm')' for citing this R package in publications.
 
 .. code-block:: R
 
 	data('Hepta')
-	
 	InputDistances=as.matrix(dist(Hepta$Data))
-	
 	projection=Pswarm(InputDistances)
 
 2.2 Second Module: Generalized Umatrix
@@ -61,7 +58,7 @@ Here the Generalized Umatrix is calculated using a simplified emergent self-orga
 
 Note, that the ‘NoLevels’ option is only set to load this vignette faster and should normally not be set manually. It describes the number contour lines placed relative to the hypsometric tints. All visualizations here are small and a low dpi is set in knitr in order to load the vignette faster.
 
-::
+.. code-block:: R
 
 	library(DatabionicSwarm)
 	library(GeneralizedUmatrix)
@@ -72,7 +69,7 @@ Note, that the ‘NoLevels’ option is only set to load this vignette faster an
 
 	## Loading required namespace: matrixStats
 
-::
+.. code-block:: R
 
 	rgl::rgl.close()#please ignore, indicates that this plot should not be saved in Rmarkdown
 	
@@ -81,7 +78,7 @@ Note, that the ‘NoLevels’ option is only set to load this vignette faster an
 
 The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visualization. Therefore we choose the seven valleys as the number of clusters. The function DBSclustering has one parameter to be set. Typically, the default setting “StructureType = TRUE” works fine. However, for density-based structures sometimes StructureType = FALSE of the function ‘DBSclustering’ yields better results. Please verify with the visualization or the Dendrogram. For the Dendrogram choose PlotIt=TRUE in the function ‘DBSclustering’. In the case of “BestmatchingUnits”, the parameter “LC” defines the size of the grid with Lines and columns where the position (0,0) lies in the left upper corner. In the case of “ProjectedPoints”, the point (0,0) lies in the left bottom corner. The transformation is normally done automatically. However, sometimes the user wishes to skip the visualization and use projected points directly. Then “LC” can be changed accordingly to LC[c(2,1)]. Seldom, there could be a rounding error leading to an error catch. In such a case try LC+1.
 
-::
+.. code-block:: R
 
 	library(DatabionicSwarm)
 	library(GeneralizedUmatrix)
@@ -100,7 +97,7 @@ The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visua
 	##  duplicated points has changed from that used in version
 	##  0.0-9 of this package (and previously). See help("deldir").
 	
-::
+.. code-block:: R
 
 	GeneralizedUmatrix::plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,Cls,NoLevels=10)
 	
@@ -121,7 +118,7 @@ In this example, we show how to improve an automatic clustering accordingly to t
 
 First, we generate a 2d projection with instant visualization of annealing steps (PlotIt=TRUE). This shows the non-linear process of concentrating on global structures first and later on local structures. Such an approach enables to entangle non-linear high-dimensional structures. If the user does not define the DistanceMatrix, it is automatically set to Euclidean because the data itself can be the input for ‘Pswarm’.
 
-::
+.. code-block:: R
 
 	rgl::rgl.close()#please ignore, closes last plot of rgl to not show it multiple times
 	library(DatabionicSwarm)
@@ -133,7 +130,7 @@ First, we generate a 2d projection with instant visualization of annealing steps
 
 If Non-Euclidean Distances are used, Please Use SammonsMapping from the ProjectionBasedClustering package with the correct OutputDimension to generate a new data matrix from the distances (see SheppardDiagram of DataVisualization Package or KruskalStress). Here the Generalized Umatrix is calculated using a simplified emergent self-organizing map algorithm. Then the topographic map is visualized based on the information of the Generalized Umatrix.
 
-::
+.. code-block:: R
 
 	library(DatabionicSwarm)
 	library(GeneralizedUmatrix)
@@ -147,7 +144,7 @@ If Non-Euclidean Distances are used, Please Use SammonsMapping from the Projecti
 
 The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visualization. In this example, outliers should be marked manually in the visualization after the process of automatic clustering. Therefore we choose the three central valleys as the number of clusters. Often, it helps to generate first the shape of an island out of the continuous topographic map because then you already have the most prominent mountains marked as the borders of the visualizations. Then you can improve the clustering by redefining valleys interactively or marking outliers lying in vulcanos. It is strongly suggested to verify such a clustering externally, e.g. Heatmap or some unsupervised index.
 
-::
+.. code-block:: R
 
 	library(DatabionicSwarm)
 	library(GeneralizedUmatrix)
@@ -159,7 +156,7 @@ The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visua
 
 To generate the 3D landscape in the shape of an island from the toroidal topographic map visualization you may cut your island interactively around high mountain ranges. Currently, I am unable to show the output in R markdown :-( If you know how to resolve the Rmarkdown issue, please mail me: info@deepbionics.org
 
-::
+.. code-block:: R
 
 	library(DatabionicSwarm)
 	library(ProjectionBasedClustering)
@@ -173,7 +170,7 @@ To generate the 3D landscape in the shape of an island from the toroidal topogra
 ################################################################
 
 In this example, the four outliers can be marked manually with mouse clicks using the shiny interface. Currently, I am unable to show the output in R markdown :-( Please try it out yourself:
-::
+.. code-block:: R
 	library(ProjectionBasedClustering)
 	Cls2=ProjectionBasedClustering::interactiveClustering(visualization$Umatrix, visualization$Bestmatches, Cls)
 	
@@ -186,12 +183,12 @@ In this example, the four outliers can be marked manually with mouse clicks usin
 
 Using insights of graph theory, the Delaunay classification error calculates for each projected point the direct neighborhood based on the Delaunay graph. Every direct Connection is weighted with the high-dimensional distance between the two corresponding data points and sorted per neighborhood by these weights. In the next step all sorted projected points points of the direct neighborhood of each projected points aquire new weights according to the harmonic function. Then, the prior classification is used to check which points do not belong to these direct neighborhoods of projected points. The weights of these points are summed up. A lower value indicates a better two-dimensional projection of the high-dimensional Input space. A higher value indicates a worse two-dimensional projection of the high-dimensional Input space.
 
-::
+.. code-block:: R
 
 	DelaunayClassificationError(Lsun3D$Data,projection$ProjectedPoints,Lsun3D$Cls)
 	
 You can also compare various projections method to a common baseline together:
-::
+.. code-block:: R
 
 	DCEpswarm=DelaunayClassificationError(Lsun3D$Data,projection$ProjectedPoints,Lsun3D$Cls)$DCE
 	baselineproj=ProjectionBasedClustering::NeRV(Lsun3D$Data)
@@ -204,7 +201,7 @@ This has the advantage of an clear range of [−2,2]. Further Details can be rea
 #######################
 
 The accuracy is defined as follows: Accuracy=No.oftruepositives/No.ofcases The number of true positives is the number of labeled data points for which the label defined by a prior classification is identical to the label defined after the clustering process. The best of all permutation of labels of the clustering algorithm regarding the accuracy is chosen, because the labels are arbitrarily defined by any algorithm. See details in conference presentation attached to [Thrun et al.,2018] on ResearchGate.
-::
+.. code-block:: R
 	ClusteringAccuracy(Lsun3D$Cls,Cls)
 
 ************
