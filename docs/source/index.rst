@@ -46,7 +46,7 @@ First generate a 2d projection, the DistanceMatrix has to be defined by the user
 	
 	## Type 'citation('DatabionicSwarm')' for citing this R package in publications.
 
-.. code-block::R
+.. code-block:: R
 
 	data('Hepta')
 	
