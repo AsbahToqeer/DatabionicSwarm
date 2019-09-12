@@ -212,3 +212,11 @@ The accuracy is defined as follows: Accuracy=No.oftruepositives/No.ofcases The n
    4 Quality Measures of Projection and Clustering
    5 References
 
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+
