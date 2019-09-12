@@ -158,7 +158,6 @@ To generate the 3D landscape in the shape of an island from the toroidal topogra
 ################################################################
 
 In this example, the four outliers can be marked manually with mouse clicks using the shiny interface. Currently, I am unable to show the output in R markdown :-( Please try it out yourself:
-
 ::
 	library(ProjectionBasedClustering)
 	Cls2=ProjectionBasedClustering::interactiveClustering(visualization$Umatrix, visualization$Bestmatches, Cls)
