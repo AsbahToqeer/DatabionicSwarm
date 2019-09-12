@@ -18,11 +18,11 @@ Contents
    :maxdepth: 5
    :numbered:
 
-   Introduction
-   First Example: Automatic approach
-   Second Example: Interactive Approach
-   Quality Measures of Projection and Clustering
-   References
+   Introduction <intro>
+   First Example: Automatic approach <first>
+   Second Example: Interactive Approach <second>
+   Quality Measures of Projection and Clustering <third>
+   References <forth>
 
 ***************
 1 Introduction
