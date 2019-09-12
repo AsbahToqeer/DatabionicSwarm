@@ -26,11 +26,24 @@ Here one example is presented using the automatic approach without any user inte
 2.1 First Module: Projection of high-dimensional Data
 #####################################################
 
-First generate a 2d projection, the DistanceMatrix has to be defined by the user.::
+First generate a 2d projection, the DistanceMatrix has to be defined by the user.
+::
 
-library(DatabionicSwarm)
+	library(DatabionicSwarm)
 
+.. seealso::
+	
+	## Package 'DatabionicSwarm' version 1.1.1.
+	
+	## Type 'citation('DatabionicSwarm')' for citing this R package in publications.
 
+::
+
+	data('Hepta')
+	
+	InputDistances=as.matrix(dist(Hepta$Data))
+	
+	projection=Pswarm(InputDistances)
 
 Android Installation::
 ######################
