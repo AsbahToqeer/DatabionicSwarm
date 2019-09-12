@@ -36,6 +36,7 @@ Here one example is presented using the automatic approach without any user inte
 #####################################################
 
 First generate a 2d projection, the DistanceMatrix has to be defined by the user.
+
 .. code-block:: R
 
 	library(DatabionicSwarm)
@@ -170,6 +171,7 @@ To generate the 3D landscape in the shape of an island from the toroidal topogra
 ################################################################
 
 In this example, the four outliers can be marked manually with mouse clicks using the shiny interface. Currently, I am unable to show the output in R markdown :-( Please try it out yourself:
+
 .. code-block:: R
 	library(ProjectionBasedClustering)
 	Cls2=ProjectionBasedClustering::interactiveClustering(visualization$Umatrix, visualization$Bestmatches, Cls)
@@ -188,6 +190,7 @@ Using insights of graph theory, the Delaunay classification error calculates for
 	DelaunayClassificationError(Lsun3D$Data,projection$ProjectedPoints,Lsun3D$Cls)
 	
 You can also compare various projections method to a common baseline together:
+
 .. code-block:: R
 
 	DCEpswarm=DelaunayClassificationError(Lsun3D$Data,projection$ProjectedPoints,Lsun3D$Cls)$DCE
@@ -201,6 +204,7 @@ This has the advantage of an clear range of [−2,2]. Further Details can be rea
 #######################
 
 The accuracy is defined as follows: Accuracy=No.oftruepositives/No.ofcases The number of true positives is the number of labeled data points for which the label defined by a prior classification is identical to the label defined after the clustering process. The best of all permutation of labels of the clustering algorithm regarding the accuracy is chosen, because the labels are arbitrarily defined by any algorithm. See details in conference presentation attached to [Thrun et al.,2018] on ResearchGate.
+
 .. code-block:: R
 	ClusteringAccuracy(Lsun3D$Cls,Cls)
 
