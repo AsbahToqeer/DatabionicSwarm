@@ -16,7 +16,6 @@ Contents
 
 .. toctree::
    :maxdepth: 5
-   :numbered:
 
    Introduction <intro>
    First Example: Automatic approach <first>
