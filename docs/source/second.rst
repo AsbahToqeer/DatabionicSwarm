@@ -60,7 +60,7 @@ To generate the 3D landscape in the shape of an island from the toroidal topogra
 Manually Improving the Clustering Using the Topograpahic Map
 ------------------------------------------------------------
 
-In this example, the four outliers can be marked manually with mouse clicks using the shiny interface. Currently, I am unable to show the output in R markdown :-( Please try it out yourself:
+In this example, the four outliers can be marked manually with mouse clicks using the shiny interface. Currently, I am unable to show the output in R markdown :-( Please try it out yourself.
 
 .. code-block:: R
 	library(ProjectionBasedClustering)
