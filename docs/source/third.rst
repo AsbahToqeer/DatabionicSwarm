@@ -25,7 +25,7 @@ This has the advantage of an clear range of [−2,2]. Further Details can be rea
 Clustering Accuracy
 -------------------
 
-The accuracy is defined as follows: Accuracy=No.oftruepositives/No.ofcases The number of true positives is the number of labeled data points for which the label defined by a prior classification is identical to the label defined after the clustering process. The best of all permutation of labels of the clustering algorithm regarding the accuracy is chosen, because the labels are arbitrarily defined by any algorithm. See details in conference presentation attached to [Thrun et al.,2018] on ResearchGate.
+The accuracy is defined as follows: :math: `\\Accuracy=No.oftruepositives/No.ofcases' The number of **true positives** is the number of labeled data points for which the label defined by a prior classification is identical to the label defined after the clustering process. The best of all permutation of labels of the clustering algorithm regarding the accuracy is chosen, because the labels are arbitrarily defined by any algorithm. See details in conference presentation attached to [Thrun et al.,2018] on ResearchGate.
 
 .. code-block:: R
 	
