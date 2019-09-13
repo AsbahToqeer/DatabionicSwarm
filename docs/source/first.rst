@@ -5,7 +5,7 @@ First Example: Automatic approach
 Here one example is presented using the automatic approach without any user interaction with shiny. Further automatic examples and a comparison to 26 common clustering algorithms is provided in http://www.deepbionics.org/Projects/ClusteringAlgorithms.html. If you want to verify your clustering result externally, you can use Heatmap or SilhouettePlot of the CRAN package DataVisualizations.
 
 First Module: Projection of high-dimensional Data
------------------------------------------------------
+---------------------------------------------------
 
 First generate a 2d projection, the DistanceMatrix has to be defined by the user.
 
@@ -24,8 +24,8 @@ First generate a 2d projection, the DistanceMatrix has to be defined by the user
 	InputDistances=as.matrix(dist(Hepta$Data))
 	projection=Pswarm(InputDistances)
 
-2.2 Second Module: Generalized Umatrix
---------------------------------------
+Second Module: Generalized Umatrix
+-----------------------------------
 
 Here the Generalized Umatrix is calculated using a simplified emergent self-organizing map algorithm. Then, the visualization of Generalized Umatrix is done by a 3D landscape called topographic map with hypsometric tints. Seven valleys are shown resulting in seven main clusters. The resulting visualization will be toroidal meaning that the left borders cyclically connects to the right border (and bottom to top). It means there are no “real” borders in this visualizations. Instead, the visualization is “continuous”. This can be visualized using the ‘Tiled=TRUE’ option of ‘plotTopographicMap’.
 
