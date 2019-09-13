@@ -1,8 +1,7 @@
 .. toctree::
-   :maxdepth: 2
-   :caption: User Guide:
+   :maxdepth: 5
   
-   Python Package <python_package>
+   Introduction <intro>
    R Package <r_package>
    Hyperparameter Selection <hyperparameters>
    Supervised Dimensionality Reduction <supervised>
