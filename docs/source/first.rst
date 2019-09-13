@@ -1,10 +1,10 @@
 
-2 First Example: Automatic approach
+First Example: Automatic approach
 ===================================
 
 Here one example is presented using the automatic approach without any user interaction with shiny. Further automatic examples and a comparison to 26 common clustering algorithms is provided in http://www.deepbionics.org/Projects/ClusteringAlgorithms.html. If you want to verify your clustering result externally, you can use Heatmap or SilhouettePlot of the CRAN package DataVisualizations.
 
-2.1 First Module: Projection of high-dimensional Data
+First Module: Projection of high-dimensional Data
 -----------------------------------------------------
 
 First generate a 2d projection, the DistanceMatrix has to be defined by the user.
@@ -46,7 +46,7 @@ Note, that the ‘NoLevels’ option is only set to load this vignette faster an
 
 	rgl::rgl.close()#please ignore, indicates that this plot should not be saved in Rmarkdown
 	
-2.3 Third Module: Automatic Clustering
+Third Module: Automatic Clustering
 --------------------------------------
 
 The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visualization. Therefore we choose the seven valleys as the number of clusters. The function DBSclustering has one parameter to be set. Typically, the default setting “StructureType = TRUE” works fine. However, for density-based structures sometimes StructureType = FALSE of the function ‘DBSclustering’ yields better results. Please verify with the visualization or the Dendrogram. For the Dendrogram choose PlotIt=TRUE in the function ‘DBSclustering’. In the case of “BestmatchingUnits”, the parameter “LC” defines the size of the grid with Lines and columns where the position (0,0) lies in the left upper corner. In the case of “ProjectedPoints”, the point (0,0) lies in the left bottom corner. The transformation is normally done automatically. However, sometimes the user wishes to skip the visualization and use projected points directly. Then “LC” can be changed accordingly to LC[c(2,1)]. Seldom, there could be a rounding error leading to an error catch. In such a case try LC+1.
