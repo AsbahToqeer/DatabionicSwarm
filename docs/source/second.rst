@@ -7,7 +7,7 @@ In this example, we show how to improve an automatic clustering accordingly to t
 First Module: Projection of High-dimensional Data
 --------------------------------------------------
 
-First, we generate a 2d projection with instant visualization of annealing steps (PlotIt=TRUE). This shows the non-linear process of concentrating on global structures first and later on local structures. Such an approach enables to entangle non-linear high-dimensional structures. If the user does not define the DistanceMatrix, it is automatically set to Euclidean because the data itself can be the input for ‘Pswarm’.
+First, we generate a 2d projection with instant visualization of annealing steps (PlotIt=TRUE). This shows the non-linear process of concentrating on global structures first and later on local structures. Such an approach enables to entangle non-linear high-dimensional structures. If the user does not define the DistanceMatrix, it is automatically set to Euclidean because the data itself can be the input for ``Pswarm``.
 
 .. code-block:: R
 
@@ -19,7 +19,7 @@ First, we generate a 2d projection with instant visualization of annealing steps
 Second Module: Generalized Umatrix
 ----------------------------------
 
-If Non-Euclidean Distances are used, Please Use SammonsMapping from the ProjectionBasedClustering package with the correct OutputDimension to generate a new data matrix from the distances (see SheppardDiagram of DataVisualization Package or KruskalStress). Here the Generalized Umatrix is calculated using a simplified emergent self-organizing map algorithm. Then the topographic map is visualized based on the information of the Generalized Umatrix.
+If **Non-Euclidean** Distances are used, Please Use SammonsMapping from the ``ProjectionBasedClustering`` package with the correct OutputDimension to generate a new data matrix from the distances (see SheppardDiagram of ``DataVisualization`` Package or KruskalStress). Here the Generalized Umatrix is calculated using a simplified emergent self-organizing map algorithm. Then the topographic map is visualized based on the information of the Generalized Umatrix.
 
 .. code-block:: R
 
@@ -33,7 +33,7 @@ If Non-Euclidean Distances are used, Please Use SammonsMapping from the Projecti
 Third Module: Interactive Clustering
 ------------------------------------
 
-The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visualization. In this example, outliers should be marked manually in the visualization after the process of automatic clustering. Therefore we choose the three central valleys as the number of clusters. Often, it helps to generate first the shape of an island out of the continuous topographic map because then you already have the most prominent mountains marked as the borders of the visualizations. Then you can improve the clustering by redefining valleys interactively or marking outliers lying in vulcanos. It is strongly suggested to verify such a clustering externally, e.g. Heatmap or some unsupervised index.
+The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visualization. In this example, outliers should be marked manually in the visualization after the process of automatic clustering. Therefore we choose the three central valleys as the number of clusters. Often, it helps to generate first the shape of an island out of the continuous topographic map because then you already have the most prominent mountains marked as the borders of the visualizations. Then you can improve the clustering by redefining valleys interactively or marking outliers lying in vulcanos. It is strongly suggested to verify such a clustering externally, e.g. **Heatmap** or some unsupervised index.
 
 .. code-block:: R
 
