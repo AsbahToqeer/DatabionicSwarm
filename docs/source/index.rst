@@ -7,4 +7,4 @@
    Hyperparameter Selection <hyperparameters>
    Supervised Dimensionality Reduction <supervised>
    Callbacks <callbacks>
-   Examples <auto_examples/index>
+   
