@@ -1,321 +1,78 @@
-.. asg2 documentation master file, created by
-   sphinx-quickstart on Thu Sep  5 17:40:17 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _r_package:
 
-*****************************************
-Short Intro to the Databionic Swarm (DBS)
-*****************************************
-
-*Michael C. Thrun*
-
-*27 Jan 2019*
-
-.. toctree::
-   :maxdepth: 5
-
-   Introduction <intro>
-   First Example: Automatic approach <first>
-   Second Example: Interactive Approach <second>
-   Quality Measures of Projection and Clustering <third>
-   References <forth>
-   Python Package <pyth>
-
-***************
-1 Introduction
-***************
-
-DBS is a flexible and robust clustering framework that consists of three independent modules. The first module is the parameter-free projection method Pswarm, which exploits the concepts of self-organization and emergence, game theory, swarm intelligence and symmetry considerations. The second module is a parameter-free high-dimensional data visualization technique, which generates projected points on a topographic map with hypsometric colors, called the generalized U-matrix. The third module is a clustering method with no sensitive parameters. The clustering can be verified by the visualization and vice versa. The term DBS refers to the method as a whole. For further details, see Databionic swarm in [Thrun, 2018], chapter 8.
-
-***********************************
-2 First Example: Automatic approach
-***********************************
-
-Here one example is presented using the automatic approach without any user interaction with shiny. Further automatic examples and a comparison to 26 common clustering algorithms is provided in http://www.deepbionics.org/Projects/ClusteringAlgorithms.html. If you want to verify your clustering result externally, you can use Heatmap or SilhouettePlot of the CRAN package DataVisualizations.
-
-2.1 First Module: Projection of high-dimensional Data
-#####################################################
-
-First generate a 2d projection, the DistanceMatrix has to be defined by the user.
-
-.. code-block:: R
-
-	library(DatabionicSwarm)
-
-::
-	
-	## Package 'DatabionicSwarm' version 1.1.1.
-	## Type 'citation('DatabionicSwarm')' for citing this R package in publications.
-
-.. code-block:: R
-
-	data('Hepta')
-	InputDistances=as.matrix(dist(Hepta$Data))
-	projection=Pswarm(InputDistances)
-
-2.2 Second Module: Generalized Umatrix
-######################################
-
-Here the Generalized Umatrix is calculated using a simplified emergent self-organizing map algorithm. Then, the visualization of Generalized Umatrix is done by a 3D landscape called topographic map with hypsometric tints. Seven valleys are shown resulting in seven main clusters. The resulting visualization will be toroidal meaning that the left borders cyclically connects to the right border (and bottom to top). It means there are no “real” borders in this visualizations. Instead, the visualization is “continuous”. This can be visualized using the ‘Tiled=TRUE’ option of ‘plotTopographicMap’.
-
-Note, that the ‘NoLevels’ option is only set to load this vignette faster and should normally not be set manually. It describes the number contour lines placed relative to the hypsometric tints. All visualizations here are small and a low dpi is set in knitr in order to load the vignette faster.
-
-.. code-block:: R
-
-	library(DatabionicSwarm)
-	library(GeneralizedUmatrix)
-	visualization=GeneratePswarmVisualization(Data = Hepta$Data,projection$ProjectedPoints,projection$LC)
-	GeneralizedUmatrix::plotTopographicMap(visualization$Umatrix,visualization$Bestmatches)
-
-::
-
-	## Loading required namespace: matrixStats
-
-.. code-block:: R
-
-	rgl::rgl.close()#please ignore, indicates that this plot should not be saved in Rmarkdown
-	
-2.3 Third Module: Automatic Clustering
-######################################
-
-The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visualization. Therefore we choose the seven valleys as the number of clusters. The function DBSclustering has one parameter to be set. Typically, the default setting “StructureType = TRUE” works fine. However, for density-based structures sometimes StructureType = FALSE of the function ‘DBSclustering’ yields better results. Please verify with the visualization or the Dendrogram. For the Dendrogram choose PlotIt=TRUE in the function ‘DBSclustering’. In the case of “BestmatchingUnits”, the parameter “LC” defines the size of the grid with Lines and columns where the position (0,0) lies in the left upper corner. In the case of “ProjectedPoints”, the point (0,0) lies in the left bottom corner. The transformation is normally done automatically. However, sometimes the user wishes to skip the visualization and use projected points directly. Then “LC” can be changed accordingly to LC[c(2,1)]. Seldom, there could be a rounding error leading to an error catch. In such a case try LC+1.
-
-.. code-block:: R
-
-	library(DatabionicSwarm)
-	library(GeneralizedUmatrix)
-	Cls=DBSclustering(k=7, Hepta$Data, visualization$Bestmatches, visualization$LC,PlotIt=FALSE)
-
-::
-
-	## Loading required namespace: parallelDist
-	## 
-	##      PLEASE NOTE:  The components "delsgs" and "summary" of the
-	##  object returned by deldir() are now DATA FRAMES rather than
-	##  matrices (as they were prior to release 0.0-18).
-	##  See help("deldir").
-	##  
-	##      PLEASE NOTE: The process that deldir() uses for determining
-	##  duplicated points has changed from that used in version
-	##  0.0-9 of this package (and previously). See help("deldir").
-	
-.. code-block:: R
-
-	GeneralizedUmatrix::plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,Cls,NoLevels=10)
-	
-.. image:: canvas.png
-    :width: 200px
-    :align: center
-    :height: 100px
-    :alt: alternate text
-	
-**************************************
-3 Second Example: Interactive Approach
-**************************************
-
-In this example, we show how to improve an automatic clustering accordingly to the topographic map using a shiny interface. The examples are not run in Rmarkdown, because CRAN wants to check the results regularly and this example is above their time limit. You may see http://www.deepbionics.org/Rpackages.html for the complete examples.
-
-3.1 First Module: Projection of High-dimensional Data
-#####################################################
-
-First, we generate a 2d projection with instant visualization of annealing steps (PlotIt=TRUE). This shows the non-linear process of concentrating on global structures first and later on local structures. Such an approach enables to entangle non-linear high-dimensional structures. If the user does not define the DistanceMatrix, it is automatically set to Euclidean because the data itself can be the input for ‘Pswarm’.
-
-.. code-block:: R
-
-	rgl::rgl.close()#please ignore, closes last plot of rgl to not show it multiple times
-	library(DatabionicSwarm)
-	data('Lsun3D')
-	projection=Pswarm(Lsun3D$Data,Cls=Lsun3D$Cls,PlotIt=T,Silent=T)
-
-3.2 Second Module: Generalized Umatrix
-######################################
-
-If Non-Euclidean Distances are used, Please Use SammonsMapping from the ProjectionBasedClustering package with the correct OutputDimension to generate a new data matrix from the distances (see SheppardDiagram of DataVisualization Package or KruskalStress). Here the Generalized Umatrix is calculated using a simplified emergent self-organizing map algorithm. Then the topographic map is visualized based on the information of the Generalized Umatrix.
-
-.. code-block:: R
-
-	library(DatabionicSwarm)
-	library(GeneralizedUmatrix)
-	visualization=GeneratePswarmVisualization(Data = Lsun3D$Data,projection$ProjectedPoints,projection$LC)
-
-	GeneralizedUmatrix::plotTopographicMap(visualization$Umatrix,visualization$Bestmatches)
-	rgl::rgl.close()#please ignore, indicate that this plot should not be saved in Rmarkdown
-
-3.3 Third Module: Interactive Clustering
-########################################
-
-The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visualization. In this example, outliers should be marked manually in the visualization after the process of automatic clustering. Therefore we choose the three central valleys as the number of clusters. Often, it helps to generate first the shape of an island out of the continuous topographic map because then you already have the most prominent mountains marked as the borders of the visualizations. Then you can improve the clustering by redefining valleys interactively or marking outliers lying in vulcanos. It is strongly suggested to verify such a clustering externally, e.g. Heatmap or some unsupervised index.
-
-.. code-block:: R
-
-	library(DatabionicSwarm)
-	library(GeneralizedUmatrix)
-	Cls=DBSclustering(k=3, Lsun3D$Data, visualization$Bestmatches, visualization$LC,PlotIt=FALSE)
-	GeneralizedUmatrix::plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,Cls)
-
-3.4 Generating the Shape of an Island out of the Topograpahic Map
-#################################################################
-
-To generate the 3D landscape in the shape of an island from the toroidal topographic map visualization you may cut your island interactively around high mountain ranges. Currently, I am unable to show the output in R markdown :-( If you know how to resolve the Rmarkdown issue, please mail me: info@deepbionics.org
-
-.. code-block:: R
-
-	library(DatabionicSwarm)
-	library(ProjectionBasedClustering)
-	library(GeneralizedUmatrix)
-
-	Imx = ProjectionBasedClustering::interactiveGeneralizedUmatrixIsland(visualization$Umatrix,visualization$Bestmatches,Cls)
-
-	GeneralizedUmatrix::plotTopographicMap(visualization$Umatrix,visualization$Bestmatches, Cls=Cls,Imx = Imx)
-	
-3.5 Manually Improving the Clustering Using the Topograpahic Map
-################################################################
-
-In this example, the four outliers can be marked manually with mouse clicks using the shiny interface. Currently, I am unable to show the output in R markdown :-( Please try it out yourself:
-
-.. code-block:: R
-	library(ProjectionBasedClustering)
-	Cls2=ProjectionBasedClustering::interactiveClustering(visualization$Umatrix, visualization$Bestmatches, Cls)
-	
-***********************************************
-4 Quality Measures of Projection and Clustering
-***********************************************
-
-4.1 Delaunay Classification Error
-#################################
-
-Using insights of graph theory, the Delaunay classification error calculates for each projected point the direct neighborhood based on the Delaunay graph. Every direct Connection is weighted with the high-dimensional distance between the two corresponding data points and sorted per neighborhood by these weights. In the next step all sorted projected points points of the direct neighborhood of each projected points aquire new weights according to the harmonic function. Then, the prior classification is used to check which points do not belong to these direct neighborhoods of projected points. The weights of these points are summed up. A lower value indicates a better two-dimensional projection of the high-dimensional Input space. A higher value indicates a worse two-dimensional projection of the high-dimensional Input space.
-
-.. code-block:: R
-
-	DelaunayClassificationError(Lsun3D$Data,projection$ProjectedPoints,Lsun3D$Cls)
-	
-You can also compare various projections method to a common baseline together:
-
-.. code-block:: R
-
-	DCEpswarm=DelaunayClassificationError(Lsun3D$Data,projection$ProjectedPoints,Lsun3D$Cls)$DCE
-	baselineproj=ProjectionBasedClustering::NeRV(Lsun3D$Data)
-	DCEpswarm=DelaunayClassificationError(Lsun3D$Data,baselineproj,Lsun3D$Cls)$DCE
-	RelativeDifference(DCEpswarm,baselineproj)
-
-This has the advantage of an clear range of [−2,2]. Further Details can be read in the conference presentation attached to [Thrun/Ultsch,2018] on ResearchGate.
-
-4.2 Clustering Accuracy
-#######################
-
-The accuracy is defined as follows: Accuracy=No.oftruepositives/No.ofcases The number of true positives is the number of labeled data points for which the label defined by a prior classification is identical to the label defined after the clustering process. The best of all permutation of labels of the clustering algorithm regarding the accuracy is chosen, because the labels are arbitrarily defined by any algorithm. See details in conference presentation attached to [Thrun et al.,2018] on ResearchGate.
-
-.. code-block:: R
-	
-	ClusteringAccuracy(Lsun3D$Cls,Cls)
-
-************
-5 References
-************
-
-[Thrun, 2018] Thrun, M. C.: Projection Based Clustering through Self-Organization and Swarm Intelligence, doctoral dissertation 2017, Springer, Heidelberg, ISBN: 978-3-658-20539-3, https://doi.org/10.1007/978-3-658-20540-9, 2018.
-
-[Thrun/Ultsch,2018] Thrun, M. C., & Ultsch, A. : Investigating Quality measurements of projections for the Evaluation of Distance and Density-based Structures of High-Dimensional Data, Proc. European Conference on Data Analysis (ECDA), Paderborn, Germany. 2018a.
-
-[Thrun et al.,2018] Thrun, M. C., Pape, F., & Ultsch, A. : Benchmarking Cluster Analysis Methods using PDE-Optimized Violin Plots, Proc. European Conference on Data Analysis (ECDA), accepted, Paderborn, Germany, 2018.
-
-.. _python_package:
-
-
-6 Python Package
-==============
+R Package
+=========
 
 Installation
 ------------
 
-The latest stable release can be installed from PyPi:
+Prerequisites
+~~~~~~~~~~~~~
 
-.. code:: bash
+R wrapper for ``ivis`` is provided via the ``reticulate`` library.
+Prior to installation, ensure that `reticulate` is available on your machine.
 
-  pip install ivis
+.. code-block:: R
+	
+	install.packages("reticulate")
 
 
-Alternatively, you can use ``pip`` to install the development version directly from github:
+Next, install `virtualenv <https://virtualenv.pypa.io/en/latest/installation/>`_ as it will be used to safely interface with the ``ivis`` Python package.
+
+Finally, the easiest way to install ``ivis`` is using the ``devtools`` package:
+
+Running install
+~~~~~~~~~~~~~~~~
+
+
+.. code-block:: R
+	
+	devtools::install_github("beringresearch/ivis/R-package")
+	library(ivis)
+	install_ivis()
+
+
+After ``ivis`` is installed, **restart your R session**. 
+
+Newer versions of Keras use tensorflow as the default backend, however if for some reason this isn't the case, add the following line to your environment variables:
 
 .. code-block:: bash
-
-  pip install git+https://github.com/beringresearch/ivis.git
-
-Another option would be to clone the github repository and install from your local copy:
-
-.. code-block:: bash
-
-  git clone https://github.com/beringresearch/ivis
-  cd ivis
-  pip install -r requirements.txt -e .
+	
+	export KERAS_BACKEND=tensorflow
 
 
-Dependencies
-------------
+Example
+-------
 
-- Python 3.5+
-- tensorflow
-- keras
-- numpy>1.14.2
-- scikit-learn>0.20.0
-- tqdm
-- annoy
+.. code-block:: R
+	
+	library(ivis)
+	library(ggplot2)
 
-.. code-block:: python
+	model <- ivis(k = 3)
 
-  from ivis import Ivis
-  from sklearn.preprocessing import MinMaxScaler
-  from sklearn import datasets
+	X <- data.matrix(iris[, 1:4])
+	X <- scale(X)
+	model <- model$fit(X)
 
-  iris = datasets.load_iris()
-  X = iris.data
+	xy <- model$transform(X)
 
-  # Scale the data to [0, 1]
-  X_scaled = MinMaxScaler().fit_transform(X)
-
-  # Set ivis parameters
-  model = Ivis(embedding_dims=2, k=15)
-
-  # Generate embeddings
-  embeddings = model.fit_transform(X_scaled)
-
-  # Export model
-  model.save_model('iris.ivis')
+	dat <- data.frame(x=xy[,1], y=xy[,2], species=iris$Species)
+	
+	ggplot(dat, aes(x=x, y=y)) + geom_point(aes(color=species)) + theme_classic()
 
 
-Getting Started
----------------
+Vignette
+--------
 
+The ``ivis`` package includes a `vignette <https://github.com/beringresearch/ivis/blob/master/R-package/vignettes/ivis_singlecell.Rmd>`_ that demonstrates an example workflow using single-cell RNA-sequencing data.
 
-.. code-block:: python
+To compile and install this vignette on your system, you need to first have a working installation of ``ivis``.
+For this, please follow the instructions above.
 
-  from ivis import Ivis
-  from sklearn.preprocessing import MinMaxScaler
-  from sklearn import datasets
+Once you have a working installation of ``ivis``, you can reinstall the package including the compiled vignette using the following command:
 
-  iris = datasets.load_iris()
-  X = iris.data
-
-  # Scale the data to [0, 1]
-  X_scaled = MinMaxScaler().fit_transform(X)
-
-  # Set ivis parameters
-  model = Ivis(embedding_dims=2, k=15)
-
-  # Generate embeddings
-  embeddings = model.fit_transform(X_scaled)
-
-  # Export model
-  model.save_model('iris.ivis')
-
-
-Bugs
-----
-
-Please report any bugs you encounter through the github `issue tracker
-<https://github.com/beringresearch/ivis/issues/new>`_. It will be most helpful to
-include a reproducible example.
-
-
+.. code-block:: R
+	
+	devtools::install_github("beringresearch/ivis/R-package", build_vignettes = TRUE, force=TRUE)
 
