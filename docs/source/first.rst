@@ -60,6 +60,9 @@ The number of clusters can be derived from dendrogram (PlotIt=TRUE) or the visua
 ::
 
 	## Loading required namespace: parallelDist
+	
+::
+
 	## 
 	##      PLEASE NOTE:  The components "delsgs" and "summary" of the
 	##  object returned by deldir() are now DATA FRAMES rather than
