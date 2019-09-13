@@ -61,7 +61,9 @@ Manually Improving the Clustering Using the Topograpahic Map
 ------------------------------------------------------------
 
 In this example, the four outliers can be marked manually with mouse clicks using the shiny interface. Currently, I am unable to show the output in R markdown :-( Please try it out yourself:
+
 .. code-block:: R
+
 	library(ProjectionBasedClustering)
 	Cls2=ProjectionBasedClustering::interactiveClustering(visualization$Umatrix, visualization$Bestmatches, Cls)
 	
