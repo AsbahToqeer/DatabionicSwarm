@@ -19,7 +19,7 @@ Short Intro to the Databionic Swarm (DBS)
    Second Example: Interactive Approach <second>
    Quality Measures of Projection and Clustering <third>
    References <forth>
-   python <license>
+   Python_Package <license>
 
 ***************
 1 Introduction
