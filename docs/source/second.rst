@@ -1,6 +1,6 @@
 
-Second Example: Interactive Approach
-====================================
+**Second Example: Interactive Approach**
+========================================
 
 In this example, we show how to improve an automatic clustering accordingly to the topographic map using a shiny interface. The examples are not run in Rmarkdown, because CRAN wants to check the results regularly and this example is above their time limit. You may see http://www.deepbionics.org/Rpackages.html for the complete examples.
 
