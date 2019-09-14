@@ -1,6 +1,6 @@
 
-Quality Measures of Projection and Clustering
-=============================================
+**Quality Measures of Projection and Clustering**
+=================================================
 
 Delaunay Classification Error
 -----------------------------
