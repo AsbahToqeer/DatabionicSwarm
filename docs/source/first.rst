@@ -79,4 +79,4 @@ The number of clusters can be derived from ``dendrogram`` ``(PlotIt=TRUE)`` or t
 	
 .. raw:: html
 
-    <iframe src="TopographicMap.html" height="345px" width="100%"></iframe>
+    <iframe src="_static/TopographicMap.html" height="345px" width="100%"></iframe>
