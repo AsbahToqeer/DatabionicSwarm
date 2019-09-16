@@ -77,9 +77,7 @@ The number of clusters can be derived from ``dendrogram`` ``(PlotIt=TRUE)`` or t
 .. code-block:: R
 
 	GeneralizedUmatrix::plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,Cls,NoLevels=10)
-	
-.. image:: download.png
-    :width: 300px
-    :align: center
-    :height: 300px
-    :alt: image
+
+.. raw:: html
+ 
+	html TopographicMap
